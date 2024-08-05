@@ -1,4 +1,4 @@
-name: X1
+name: Run Python Script in Parallel
 
 on: 
   push:
@@ -8,6 +8,10 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        iteration: [1, 2, 3, 4, 5]
 
     steps:
     - name: Checkout code
@@ -25,8 +29,4 @@ jobs:
         # pip install -r requirements.txt
 
     - name: Run script in parallel
-      run: |
-        for i in {1..5}
-        do
-           python app.py &
-        done
+      run: python your_script.py &
